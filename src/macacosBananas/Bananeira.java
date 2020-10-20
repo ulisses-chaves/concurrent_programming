@@ -2,7 +2,7 @@ package macacosBananas;
 
 import java.util.concurrent.Semaphore;
 
-public class Bananeira extends Thread{
+public class Bananeira{
 
 	private int bananas;
 	private int bananasRestantes;
@@ -27,17 +27,17 @@ public class Bananeira extends Thread{
 		}
 	}
 	
-	public int subida () {
-		//System.out.println(this.bananas);
-		//System.out.println(this.bananasRestantes);
+	public int subida () throws InterruptedException {
 		if(this.bananas == 0) {
 			return 0;
 		} else {
-			if(LIM <= this.macacosNaArvore ) {
-				semaforo.release();
+			if(LIM == this.macacosNaArvore) {
+				semaforo.acquire();
 				return 1;
 			} else {
+				
 				this.macacosNaArvore = this.macacosNaArvore + 1;
+				//System.out.println(macacosNaArvore);
 				this.bananasComidasTotal = this.bananasComidasTotal + 1;
 				this.bananas = this.bananas - 1;
 				return 2;
@@ -46,38 +46,9 @@ public class Bananeira extends Thread{
 		
 	}
 	
-	public void run() {
-		while(this.bananasRestantes != 0) {
-			while(this.bananas == 0) {
-				while(this.bananas <= 50 && this.bananasRestantes != 0) {
-					this.bananas = this.bananas + 5;
-					this.bananasRestantes = this.bananasRestantes - 5;
-					try {
-						sleep((long) (2000)); //5000
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-			}
-			try {
-				sleep((long) (100));
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-	}
-	
-	public void descida() {
-		try {
-			semaforo.acquire();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-			this.macacosNaArvore = this.macacosNaArvore - 1;
-		
+	public void descida() throws InterruptedException {
+		semaforo.release();
+		this.macacosNaArvore = this.macacosNaArvore - 1;
 	}
 
 	public int getBananas() {
@@ -92,15 +63,20 @@ public class Bananeira extends Thread{
 		return bananasRestantes;
 	}
 
-	public void setBananasRestantes(int bananasRestantes) {
+	public void setBananasRestantes(int bananasRestantes){
 		this.bananasRestantes = bananasRestantes;
 	}
 	
-	public int getBananasComidasTotal() {
+	public synchronized int getBananasComidasTotal() throws InterruptedException {
+		Thread.sleep(100);
 		return bananasComidasTotal;
 	}
 
-	public int getAllBananas() {
+	public synchronized int getAllBananas() throws InterruptedException {
+		Thread.sleep(100);
 		return allBananas;
+	}
+	public int getMacacosNaArvore() {
+		return macacosNaArvore;
 	}
 }

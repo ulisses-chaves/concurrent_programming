@@ -5,7 +5,7 @@ import java.util.concurrent.Semaphore;
 public class Principal {
 
 	public static void main(String[] args) throws InterruptedException {
-		Semaphore sem = new Semaphore(0);
+		Semaphore sem = new Semaphore(2);
 		Equipe equipeA = new Equipe ('A', "João", "Pedro", sem);
 		Equipe equipeB = new Equipe ('B', "Ulisses", "Lucas", sem);
 		Equipe equipeC = new Equipe ('C', "Iury", "Hugo", sem);

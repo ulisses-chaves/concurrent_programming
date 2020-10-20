@@ -13,41 +13,28 @@ public class Macaco extends Thread{
 	}
 	
 	public void run () {
-		while(bananeira.getBananasComidasTotal() != bananeira.getAllBananas()) {
-			int resposta = bananeira.subida();
-			if(resposta == 1) {
-				//System.out.println(bananeira.getBananasRestantes());
-				System.out.println("O macaco " + this.nome + " comeu uma banana");
-				try {
-					sleep((long) (1000)); //1000
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				this.bananasComidas = this.bananasComidas + 1;
-				bananeira.descida();
-			} else {
-				if (resposta == 2) {
+		try {
+			while(bananeira.getBananasComidasTotal() < bananeira.getAllBananas()) {
+				int resposta = 0;
+				resposta = bananeira.subida();
+				if(resposta == 1) {
 					System.out.println("O macaco " + this.nome + " não conseguiu subir na bananeira");
-					try {
-						sleep((long) (2000)); //2000
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+					sleep(2000); //2000
 				} else {
-					System.out.println("Não havia bananas para o macaco " + this.nome + " comer");
-					try {
-						sleep((long) (1000)); //1000
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+					if (resposta == 2) {
+						System.out.println("O macaco " + this.nome + " comeu uma banana");
+						sleep(1000); //1000
+						this.bananasComidas = this.bananasComidas + 1;
+						bananeira.descida();
+					} else {
+						System.out.println("Não havia bananas para o macaco " + this.nome + " comer");
+						sleep(1000); //1000
 					}
 				}
 			}
-		}
+		} catch (InterruptedException e) {}
+		System.out.println(bananeira.getMacacosNaArvore());
 	}
-	
 	
 	public String getNome() {
 		return nome;
