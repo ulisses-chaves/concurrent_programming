@@ -14,7 +14,6 @@ public class Desenvolvimento extends Thread{
 		while (equipe.getJogosProduzidos() < 10) {
 			equipe.produzirJogo();
 			int tempo = new Random().nextInt(500) + 200;
-			//System.out.println("O dev " + equipe.getDev() + " da equipe " + equipe.getNome() + " está produzindo um jogo. Número de jogos da equipe " + equipe.getNome()+": "+equipe.getJogosProduzidos());
 			try {
 				sleep((long) (tempo*Math.random()));
 			} catch (InterruptedException e) {
@@ -26,8 +25,5 @@ public class Desenvolvimento extends Thread{
 		
 		long fim  = System.currentTimeMillis();
 		this.equipe.setTempoDev(fim - inicio);
-		
-		//System.out.println("Tempo da equipe " + this.equipe.getNome() + ": " + (fim - inicio));
-		
 	}
 }

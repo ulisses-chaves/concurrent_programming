@@ -6,7 +6,7 @@ public class Principal {
 
 	public static void main(String[] args) throws InterruptedException {
 		
-		int q = 100;
+		int q = 200; // Número total de bananas!
 		
 		Semaphore semaforo = new Semaphore(2);
 		Bananeira bananeira = new Bananeira(q, semaforo);
@@ -20,7 +20,6 @@ public class Principal {
 		macaco2.start();
 		macaco3.start();
 		
-		//reposicao.join();
 		macaco1.join();
 		macaco2.join();
 		macaco3.join();

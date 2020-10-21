@@ -13,7 +13,6 @@ public class Concepcao extends Thread{
 		while (equipe.getJogosProduzidos() < 10) {
 			equipe.produzirGDD();
 			int tempo = new Random().nextInt(1000) + 500;
-			//System.out.println("O designer " + equipe.getGameDesigner() + " da equipe " + equipe.getNome() + " está fazendo o GDD");
 			try {
 				sleep((long) (tempo*Math.random()));
 			} catch (InterruptedException e) {

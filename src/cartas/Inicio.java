@@ -6,7 +6,6 @@ public class Inicio {
 
 	public static void main(String[] args) throws InterruptedException {
 		int n = 3; // num jogadores e baralhos
-		LinkedList<Jogador> jogadores = new LinkedList<Jogador>();
 		LinkedList<Carta> cartas = new LinkedList<Carta>();
 		
 		//instanciando as cartas de um baralho
@@ -29,6 +28,7 @@ public class Inicio {
 			baralho.addBaralho(cartas);
 		}
 		
+		//instaciando os jogadores e a mesa
 		Jogador jogador1 = new Jogador(1, baralho);
 		Jogador jogador2 = new Jogador(2, baralho);
 		Jogador jogador3 = new Jogador(3, baralho);
@@ -48,7 +48,6 @@ public class Inicio {
 		int c1 = jogador1.getCartasGanhas();
 		int c2 = jogador2.getCartasGanhas();
 		int c3 = jogador3.getCartasGanhas();
-		int c;
 		//System.out.println(c1);
 		//System.out.println(c2);
 		//System.out.println(c3);

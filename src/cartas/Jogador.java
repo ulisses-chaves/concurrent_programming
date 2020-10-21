@@ -9,7 +9,6 @@ public class Jogador extends Thread{
 	private int cartasGanhas;
 	private Baralho baralho;
 	private boolean pronto;
-	private boolean aguardando;
 
 	public Jogador (int nome, Baralho baralho) {
 		this.nome = nome;
@@ -18,7 +17,6 @@ public class Jogador extends Thread{
 		this.cartasGanhas = 0;
 		this.cartasNaMao = new LinkedList<Carta>();
 		this.pronto = false;
-		this.aguardando = false;
 	}
 
 	public void run () {

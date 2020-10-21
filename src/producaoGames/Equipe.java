@@ -24,20 +24,22 @@ public class Equipe {
 	}
 	
 	public void produzirGDD() {
-		if (LIMGDD <= this.gdd) {
+		if (LIMGDD == this.gdd) {
+			//System.out.println("A equipe " + this.nome + " não conseguiu fazer o GDD. Número máximo alcançado.");
 			semaforo.release();
 		} else {
 			this.gdd = gdd + 1;
+			//System.out.println("O designer " + this.gameDesigner + " da equipe " + this.nome + " está fazendo o GDD");
 		}
 	}
 	
-	public String produzirJogo() {
+	public void produzirJogo() {
 		try {
 			semaforo.acquire();
 		} catch (InterruptedException e) {}
 		this.gdd = this.gdd - 1;
 		this.jogosProduzidos = this.jogosProduzidos + 1;
-		return "O desenvolvedor " + this.dev + "fez mais um jogo\nJogos produzidos pela equipe " + this.nome + ": " + this.jogosProduzidos;
+		//System.out.println("O dev " + this.dev + " da equipe " + this.nome + " está produzindo um jogo. Número de jogos da equipe " + this.nome+": " + this.jogosProduzidos);
 	}
 	
 	//GETTERS e SETTERS

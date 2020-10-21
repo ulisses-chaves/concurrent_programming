@@ -35,9 +35,7 @@ public class Bananeira{
 				semaforo.acquire();
 				return 1;
 			} else {
-				
 				this.macacosNaArvore = this.macacosNaArvore + 1;
-				//System.out.println(macacosNaArvore);
 				this.bananasComidasTotal = this.bananasComidasTotal + 1;
 				this.bananas = this.bananas - 1;
 				return 2;
